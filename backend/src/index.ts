@@ -1,4 +1,4 @@
-import express, {Application} from "express";
+import express, {Application, Router} from "express";
 import morgan from "morgan";
 
 const PORT = process.env.PORT || 8000;
@@ -9,11 +9,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(express.static("public"));
 
-app.get("/ping", async (_req: any, res: any ) => {
-    res.send({
-        message: "pong",
-    })
-})
+app.use(Router)
 
 app.listen(PORT, () => {
     console.log("Server is running on port", PORT)
