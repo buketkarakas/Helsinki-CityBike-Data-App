@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 @Entity()
 export class Station{
     @PrimaryColumn()
-    stationId!: Number
+    stationId!: number;
 
     @Column()
     finnishName!: string;

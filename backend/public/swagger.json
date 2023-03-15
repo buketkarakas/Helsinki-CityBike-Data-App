@@ -17,6 +17,124 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Station": {
+				"properties": {
+					"stationId": {
+						"type": "number",
+						"format": "double"
+					},
+					"finnishName": {
+						"type": "string"
+					},
+					"swedishName": {
+						"type": "string"
+					},
+					"englishName": {
+						"type": "string"
+					},
+					"finnishAddress": {
+						"type": "string"
+					},
+					"swedishAddress": {
+						"type": "string"
+					},
+					"finnishCity": {
+						"type": "string"
+					},
+					"swedishCity": {
+						"type": "string"
+					},
+					"operator": {
+						"type": "string"
+					},
+					"capacity": {
+						"type": "string"
+					},
+					"xCoord": {
+						"type": "number",
+						"format": "double"
+					},
+					"yCoord": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"stationId",
+					"finnishName",
+					"swedishName",
+					"englishName",
+					"finnishAddress",
+					"swedishAddress",
+					"finnishCity",
+					"swedishCity",
+					"operator",
+					"capacity",
+					"xCoord",
+					"yCoord"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Journey": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"departureTime": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"returnTime": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"departureStationId": {
+						"type": "number",
+						"format": "double"
+					},
+					"departureStation": {
+						"$ref": "#/components/schemas/Station"
+					},
+					"returnStationId": {
+						"type": "number",
+						"format": "double"
+					},
+					"returnStation": {
+						"$ref": "#/components/schemas/Station"
+					},
+					"departureStationName": {
+						"type": "string"
+					},
+					"returnStationName": {
+						"type": "string"
+					},
+					"coveredDistance": {
+						"type": "number",
+						"format": "double"
+					},
+					"duration": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"departureTime",
+					"returnTime",
+					"departureStationId",
+					"departureStation",
+					"returnStationId",
+					"returnStation",
+					"departureStationName",
+					"returnStationName",
+					"coveredDistance",
+					"duration"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -46,6 +164,31 @@
 						}
 					}
 				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/journeys": {
+			"get": {
+				"operationId": "GetJourneys",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Journey"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Journey"
+				],
 				"security": [],
 				"parameters": []
 			}
