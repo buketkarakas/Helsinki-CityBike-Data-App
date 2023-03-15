@@ -16,14 +16,12 @@ export class Journey {
     @Column()
     departureStationId!: number;
     @ManyToOne((_type) => Station, (station: Station) => station.stationId)
-    @JoinColumn()
-    departureStation!: Station;
+
 
     @Column()
     returnStationId!: number;
     @ManyToOne((_type) => Station, (station: Station) => station.stationId)
-    @JoinColumn()
-    returnStation!: Station;
+
 
     @Column()
     departureStationName!: string;
