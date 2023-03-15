@@ -9,7 +9,7 @@ const config: DataSourceOptions = {
     password: process.env.POSTGRES_PASSWORD || "postgres",
     database: process.env.POSTGRES_DB || "postgres",
     entities: [Journey, Station],
-    synchronize: true,
+    synchronize: false,
 };
 
 export default config;

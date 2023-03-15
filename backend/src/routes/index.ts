@@ -1,6 +1,7 @@
 import  express  from "express";
 import PingController from "../controllers/ping";
 import JourneyRouter from "./journey.router";
+import StationRouter from "./station.router";
 
 const router = express.Router();
 
@@ -12,5 +13,6 @@ router.get("/ping",async (_req, res) => {
 })
 
 router.use("/journeys", JourneyRouter);
+router.use("/stations", StationRouter);
 
 export default router;
