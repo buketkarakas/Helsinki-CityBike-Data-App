@@ -40,3 +40,5 @@ AppDataSource.initialize()
         console.log("Unable to connect to db", err);
         process.exit(1)
     })
+
+    export {AppDataSource};
