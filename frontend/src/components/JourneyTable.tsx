@@ -1,51 +1,56 @@
 import Table from 'react-bootstrap/Table';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, gridClasses } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
+import { alpha, styled } from '@mui/material/styles';
+
+const ODD_OPACITY = 0.2;
+
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
   {
     field: 'departureTime',
     headerName: 'Departure Time',
-    width: 150,
+    width: 170,
     editable: true,
   },
   {
     field: 'returnTime',
     headerName: 'Return Time',
-    width: 150,
+    width: 170,
     editable: true,
   },
   {
     field: 'departureStationId',
     headerName: 'Departure Station Id',
     type: 'number',
-    width: 110,
+    width: 140,
     editable: true,
   },
   {
     field: 'departureStationName',
     headerName: 'Departure Station Name',
-    width: 110,
+    width: 180,
     editable: true,
   },
   {
     field: 'returnStationId',
     headerName: 'Return Station Id',
     type: 'number',
-    width: 110,
+    width: 120,
     editable: true,
   },
   {
     field: 'returnStationName',
     headerName: 'Return Station Name',
-    width: 110,
+    width: 180,
     editable: true,
   },
   {
     field: 'coveredDistance',
     headerName: 'Covered Distance (km)',
     type: 'number',
-    width: 110,
+    width: 160,
     editable: true,
   },
   {
@@ -69,10 +74,70 @@ const rows = [
     { id: 9, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
   ];
 
+  const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
+    [`& .${gridClasses.row}.even`]: {
+      backgroundColor: theme.palette.grey[200],
+      '&:hover, &.Mui-hovered': {
+        backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
+        '@media (hover: none)': {
+          backgroundColor: 'lightgray',
+        },
+      },
+      '&.Mui-selected': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          ODD_OPACITY + theme.palette.action.selectedOpacity,
+        ),
+        '&:hover, &.Mui-hovered': {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            ODD_OPACITY +
+              theme.palette.action.selectedOpacity +
+              theme.palette.action.hoverOpacity,
+          ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: alpha(
+              theme.palette.primary.main,
+              ODD_OPACITY + theme.palette.action.selectedOpacity,
+            ),
+          },
+        },
+      },
+    },
+  }));
+
 function JourneyTable() {
   return (
-    <div  style={{ height: 400, width: '80%', backgroundColor: "white" }}>
-        <DataGrid
+    <Box sx={{ height: '90%', width: '100%' , padding: "5%"}}>
+        <StripedDataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+                pagination: {
+                paginationModel: {
+                    pageSize: 5,
+                },
+                },
+            }
+        }
+        sx={{background:"lightgray"}}
+        pageSizeOptions={[5]}
+        getRowClassName={(params) =>
+            params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
+          }
+            
+        />
+        {/* <DataGrid
+            sx={{
+            boxShadow: 2,
+            border: 2,
+            bgcolor: "lightgray",
+            borderColor: 'primary.light',
+            '& .MuiDataGrid-cell:hover': {
+              color: 'primary.main',
+            },
+            }}
             rows={rows}
             columns={columns}
             initialState={{
@@ -85,8 +150,8 @@ function JourneyTable() {
         }
             pageSizeOptions={[5]}
         
-        />
-    </div>
+        /> */}
+</Box>
   );
 }
 
