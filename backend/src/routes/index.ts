@@ -10,7 +10,7 @@ router.get("/ping",async (_req, res) => {
     const response = await controller.getMessage();
     return res.send(response);
 
-})
+});
 
 router.use("/journeys", JourneyRouter);
 router.use("/stations", StationRouter);

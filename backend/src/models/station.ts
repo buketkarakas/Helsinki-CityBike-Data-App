@@ -5,39 +5,39 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 @Entity()
 export class Station{
     @PrimaryColumn()
-    stationId!: number;
+        stationId!: number;
 
     @Column()
-    finnishName!: string;
+        finnishName!: string;
 
     @Column()
-    swedishName!: string;
+        swedishName!: string;
 
     @Column()
-    englishName!: string;
+        englishName!: string;
 
     @Column()
-    finnishAddress!: string;
+        finnishAddress!: string;
 
     @Column()
-    swedishAddress!: string;
+        swedishAddress!: string;
 
     @Column()
-    finnishCity!: string;
+        finnishCity!: string;
 
     @Column()
-    swedishCity!: string;
+        swedishCity!: string;
 
     @Column()
-    operator!: string;
+        operator!: string;
 
     @Column()
-    capacity!: string;
+        capacity!: string;
 
     @Column({type: "decimal", precision: 10, scale: 8, default:0})
-    xCoord!: number
+        xCoord!: number;
 
 
     @Column({type: "decimal", precision: 10, scale: 8, default:0})
-    yCoord!: number
+        yCoord!: number;
 }

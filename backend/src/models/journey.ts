@@ -1,38 +1,38 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Station } from "./station";
 
 
 @Entity()
 export class Journey {
     @PrimaryGeneratedColumn()
-    id!: number;
+        id!: number;
 
     @Column({type: "timestamptz"})
-    departureTime!: Date;
+        departureTime!: Date;
 
     @Column({type: "timestamptz"})
-    returnTime!: Date;
+        returnTime!: Date;
 
     @Column()
-    departureStationId!: number;
+        departureStationId!: number;
     @ManyToOne((_type) => Station, (station: Station) => station.stationId)
 
 
     @Column()
-    returnStationId!: number;
+        returnStationId!: number;
     @ManyToOne((_type) => Station, (station: Station) => station.stationId)
 
 
     @Column()
-    departureStationName!: string;
+        departureStationName!: string;
 
     @Column()
-    returnStationName!: string;
+        returnStationName!: string;
 
     @Column()
-    coveredDistance!: number;
+        coveredDistance!: number;
 
     @Column()
-    duration!: number;
+        duration!: number;
 
 }

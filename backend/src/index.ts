@@ -26,19 +26,19 @@ app.use(
     })
 );
 
-app.use(Router)
+app.use(Router);
 
-const AppDataSource = new DataSource(dbConfig)
+const AppDataSource = new DataSource(dbConfig);
 
 AppDataSource.initialize()
     .then((_connection) => {
         app.listen(PORT, () => {
-            console.log("Server is running on port", PORT)
+            console.log("Server is running on port", PORT);
         });
     })
     .catch((err) => {
         console.log("Unable to connect to db", err);
-        process.exit(1)
-    })
+        process.exit(1);
+    });
 
-    export {AppDataSource};
+export {AppDataSource};

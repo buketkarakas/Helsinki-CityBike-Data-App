@@ -8,6 +8,6 @@ import { getJourneys } from "../repositories/journey";
 export default class JourneyController{
     @Get("/")
     public async getJourneys(): Promise<Array<Journey>> {
-        return getJourneys()
+        return getJourneys();
     }
 }
