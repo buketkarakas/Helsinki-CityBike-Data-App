@@ -1,8 +1,9 @@
 import * as React from 'react';
+import JourneyTable from './JourneyTable';
 
 const Journeys = () => {
     return (
-        <h1>HELLO THIS IS JOURNEYS!</h1>
+        <JourneyTable/>
     )
 }
 
