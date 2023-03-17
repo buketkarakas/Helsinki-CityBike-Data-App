@@ -1,11 +1,16 @@
 import * as React from "react";
-import { DataGrid, GridColDef, gridClasses, GridEventListener, useGridApiEventHandler, useGridApiContext, GridFooter } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, gridClasses, GridEventListener, useGridApiEventHandler, useGridApiContext, GridFooter, GridCellParams  } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import { alpha, styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+
 
 const ODD_OPACITY = 0.2;
 
+const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, cellValues: GridCellParams) => {
+    console.log(cellValues.row);
+  };
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -14,19 +19,35 @@ const columns: GridColDef[] = [
     headerName: 'Station Name',
     width: 170,
     editable: true,
-  }
+  },
+  {
+    field: "Details",
+    renderCell: (cellValues) => {
+      return (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(event) => {
+            handleClick(event, cellValues);
+          }}
+        >
+          Details
+        </Button>
+      );
+    }
+  },
 ]
 
 const rows = [
     { id: 501, name: 'Hanasaari' },
-    { id: 501, name: 'Hanasaari' },
-    { id: 501, name: 'Hanasaari' },
-    { id: 501, name: 'Hanasaari' },
-    { id: 501, name: 'Hanasaari' },
-    { id: 501, name: 'Hanasaari' },
-    { id: 501, name: 'Hanasaari' },
-    { id: 501, name: 'Hanasaari' },
-    { id: 501, name: 'Hanasaari' },
+    { id: 500, name: 'Hanasaari' },
+    { id: 54, name: 'Hanasaari' },
+    { id: 58, name: 'Hanasaari' },
+    { id: 645, name: 'Hanasaari' },
+    { id: 3254, name: 'Hanasaari' },
+    { id: 345, name: 'Hanasaari' },
+    { id: 67, name: 'Hanasaari' },
+    { id: 347, name: 'Hanasaari' },
   ];
 
   const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
@@ -62,23 +83,7 @@ const rows = [
     },
   }));
 
-function Footer() {
-    const [message, setMessage] = React.useState('');
-    const apiRef = useGridApiContext();
-  
-    const handleRowClick: GridEventListener<'rowClick'> = (params) => {
-      setMessage(`Movie "${params.row.title}" clicked`);
-    };
-  
-    useGridApiEventHandler(apiRef, 'rowClick', handleRowClick);
-  
-    return (
-      <React.Fragment>
-        <GridFooter />
-        {message && <Alert severity="info">{message}</Alert>}
-      </React.Fragment>
-    );
-  }
+
 
 function StationsTable() {
   return (
@@ -99,7 +104,6 @@ function StationsTable() {
         getRowClassName={(params) =>
             params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
           }
-        slots={{footer: Footer}}
         disableRowSelectionOnClick
             
         />
