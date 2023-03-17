@@ -128,29 +128,6 @@ function JourneyTable() {
           }
             
         />
-        {/* <DataGrid
-            sx={{
-            boxShadow: 2,
-            border: 2,
-            bgcolor: "lightgray",
-            borderColor: 'primary.light',
-            '& .MuiDataGrid-cell:hover': {
-              color: 'primary.main',
-            },
-            }}
-            rows={rows}
-            columns={columns}
-            initialState={{
-                pagination: {
-                paginationModel: {
-                    pageSize: 5,
-                },
-                },
-            }
-        }
-            pageSizeOptions={[5]}
-        
-        /> */}
 </Box>
   );
 }
