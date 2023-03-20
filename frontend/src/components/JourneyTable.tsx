@@ -107,12 +107,15 @@ const rows = [
     },
   }));
 
-function JourneyTable() {
+function JourneyTable(props:any) {
+  const data = props.data;
+  console.log("Hello Data", data)
+  console.log("Props", props)
   return (
     <Box sx={{ height: '90%', width: '100%' , padding: "5%"}}>
         <StripedDataGrid
-            rows={rows}
             columns={columns}
+            rows={data}
             initialState={{
                 pagination: {
                 paginationModel: {
