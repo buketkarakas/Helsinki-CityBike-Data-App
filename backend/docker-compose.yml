@@ -2,15 +2,17 @@ version: "3"
 
 services:
   db:
-    image: postgres:12
+    build: ./docker/db
+    ports:
+      -  "5432:5432"
     environment:
-      - POSTGRES_DB=express-ts
+      - POSTGRES_DB=solitaacademy
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   app:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: ./docker/backend/Dockerfile.dev
     volumes:
       -  ./src:/app/src
     ports:
@@ -18,7 +20,7 @@ services:
     depends_on:
       - db
     environment:
-      - POSTGRES_DB=express-ts
+      - POSTGRES_DB=solitaacademy
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_HOST=db
