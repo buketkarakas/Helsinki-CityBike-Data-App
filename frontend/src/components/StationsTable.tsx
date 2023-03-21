@@ -10,7 +10,7 @@ import { redirect, useNavigate } from "react-router-dom";
 const ODD_OPACITY = 0.2;
 
 
-const rows = [
+/* const rows = [
     { id: 501, name: 'Hanasaari' },
     { id: 500, name: 'Hanasaari' },
     { id: 54, name: 'Hanasaari' },
@@ -20,7 +20,7 @@ const rows = [
     { id: 345, name: 'Hanasaari' },
     { id: 67, name: 'Hanasaari' },
     { id: 347, name: 'Hanasaari' },
-  ];
+  ]; */
 
   const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
     [`& .${gridClasses.row}.even`]: {
@@ -57,13 +57,13 @@ const rows = [
 
 
 
-function StationsTable() {
+function StationsTable({data}:any) {
     const navigate = useNavigate()
 
     const columns: GridColDef[] = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { field: 'stationId', headerName: 'ID', width: 90 },
         {
-          field: 'name',
+          field: 'finnishName',
           headerName: 'Station Name',
           width: 170,
           editable: true,
@@ -89,7 +89,8 @@ function StationsTable() {
   return (
     <Box sx={{ height: '90%', width: '100%' , padding: "5%"}}>
         <StripedDataGrid
-            rows={rows}
+            rows={data}
+            getRowId={(row) => row.stationId}
             columns={columns}
             initialState={{
                 pagination: {
