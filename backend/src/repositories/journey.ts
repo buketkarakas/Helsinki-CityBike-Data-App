@@ -2,8 +2,14 @@ import { Journey } from "../models";
 import { AppDataSource } from "..";
 
 
+export const getJourneys = async (page: number, limit: number): Promise<Array<Journey>> => {
+    const offset = (page - 1) * limit;
 
-export const getJourneys = async (): Promise<Array<Journey>> => {
-    const journeyRepository = AppDataSource.getRepository(Journey);
-    return journeyRepository.find();
+    return await AppDataSource.createQueryBuilder()
+    .select("journey")
+    .from(Journey, "journey")
+    .offset(offset)
+    .limit(limit)
+    .getMany()
+
 };
