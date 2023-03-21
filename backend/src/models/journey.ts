@@ -8,29 +8,29 @@ export class Journey {
         id!: number;
 
     @Column({type: "timestamptz"})
-        departureTime!: Date;
+        departuretime!: Date;
 
     @Column({type: "timestamptz"})
-        returnTime!: Date;
+        returntime!: Date;
 
     @Column()
-        departureStationId!: number;
-    @ManyToOne((_type) => Station, (station: Station) => station.stationId)
-
-
-    @Column()
-        returnStationId!: number;
-    @ManyToOne((_type) => Station, (station: Station) => station.stationId)
+        departurestationid!: number;
+   // @ManyToOne((_type) => Station, (station: Station) => station.stationid)
 
 
     @Column()
-        departureStationName!: string;
+        returnstationid!: number;
+    //@ManyToOne((_type) => Station, (station: Station) => station.stationid)
+
 
     @Column()
-        returnStationName!: string;
+        departurestationname!: string;
 
     @Column()
-        coveredDistance!: number;
+        returnstationname!: string;
+
+    @Column()
+        covereddistance!: number;
 
     @Column()
         duration!: number;

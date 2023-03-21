@@ -7,7 +7,7 @@ const config: DataSourceOptions = {
     port: Number(process.env.POSTGRES_USER) || 5432,
     username: process.env.POSTGRES_USER || "postgres",
     password: process.env.POSTGRES_PASSWORD || "postgres",
-    database: process.env.POSTGRES_DB || "postgres",
+    database: process.env.POSTGRES_DB || "solitaacademy",
     entities: [Journey, Station],
     synchronize: false,
 };

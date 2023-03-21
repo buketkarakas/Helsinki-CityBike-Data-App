@@ -12,7 +12,7 @@ export const getStation = async (stationId: number): Promise<Station | null> => 
     const stationRepository = AppDataSource.getRepository(Station);
     const station = await stationRepository.findOne({
         where: {
-            stationId: stationId
+            stationid: stationId
         }
     });
     if (!Station) return null;
