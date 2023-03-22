@@ -1,8 +1,8 @@
 import axios from "axios";
 const baseUrl = "http://localhost:8000/journeys"
 
-const getAll = () => {
-    const request = axios.get(baseUrl);
+const getAll = (page:string) => {
+    const request = axios.get(`${baseUrl}/${page}`);
     return request.then(response => response.data)
 }
 

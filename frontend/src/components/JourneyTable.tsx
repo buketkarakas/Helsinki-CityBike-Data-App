@@ -1,7 +1,9 @@
-import Table from 'react-bootstrap/Table';
+import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, gridClasses } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import { alpha, styled } from '@mui/material/styles';
+import journeyService from '../services/journeys'
+import TablePagination from '@mui/material/TablePagination';
 
 const ODD_OPACITY = 0.2;
 
@@ -9,45 +11,45 @@ const ODD_OPACITY = 0.2;
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
   {
-    field: 'departureTime',
+    field: 'departuretime',
     headerName: 'Departure Time',
     width: 170,
     editable: true,
   },
   {
-    field: 'returnTime',
+    field: 'returntime',
     headerName: 'Return Time',
     width: 170,
     editable: true,
   },
   {
-    field: 'departureStationId',
+    field: 'departurestationid',
     headerName: 'Departure Station Id',
     type: 'number',
     width: 140,
     editable: true,
   },
   {
-    field: 'departureStationName',
+    field: 'departurestationname',
     headerName: 'Departure Station Name',
     width: 180,
     editable: true,
   },
   {
-    field: 'returnStationId',
+    field: 'returnstationid',
     headerName: 'Return Station Id',
     type: 'number',
     width: 120,
     editable: true,
   },
   {
-    field: 'returnStationName',
+    field: 'returnstationname',
     headerName: 'Return Station Name',
     width: 180,
     editable: true,
   },
   {
-    field: 'coveredDistance',
+    field: 'covereddistance',
     headerName: 'Covered Distance (km)',
     type: 'number',
     width: 160,
@@ -61,18 +63,6 @@ const columns: GridColDef[] = [
     editable: true,
   },
 ]
-
-const rows = [
-    { id: 1, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-    { id: 2, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-    { id: 3, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-    { id: 4, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-    { id: 5, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-    { id: 6, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-    { id: 7, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-    { id: 8, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-    { id: 9, departureTime: '2021-05-31 23:57:25', returnTime: '2021-06-01 00:05:46', departureStationId: 94,departureStationName: "Laajalahden aukio", returnStationId: 100, "returnStationName": "Teljäntie",  coveredDistance: 2043, duration: 500 },
-  ];
 
   const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
     [`& .${gridClasses.row}.even`]: {
@@ -107,30 +97,58 @@ const rows = [
     },
   }));
 
-function JourneyTable(props:any) {
-  const data = props.data;
-  console.log("Hello Data", data)
-  console.log("Props", props)
+function JourneyTable() {
+  const [journeys, setJourneys] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(50);
+  const [rowCount, setRowCount] = useState(0);
+
+  const fetchData = async () => {
+    journeyService
+      .getAll(page.toString())
+      .then( journeys => {
+          setJourneys(journeys)
+          setRowCount(journeys.count);
+      })
+  }
+  useEffect(() => {
+      fetchData()
+  }, [page, pageSize])
+
+  function handlePageChange(event:any, value:any) {
+    setPage(value);
+  }
+  function handleChangeRowsPerPage(event:any) {
+    setPageSize(parseInt(event.target.value, 50));
+    setPage(0);
+  }
+
   return (
     <Box sx={{ height: '90%', width: '100%' , padding: "5%"}}>
         <StripedDataGrid
-            columns={columns}
-            rows={data}
-            initialState={{
-                pagination: {
-                paginationModel: {
-                    pageSize: 5,
-                },
-                },
+          components={
+            {
+              Pagination: () => (
+                <TablePagination
+                component="div"
+                count = {-1}
+                page = {page}
+                onPageChange = {handlePageChange}  
+                rowsPerPage = {pageSize}
+                onRowsPerPageChange = {handleChangeRowsPerPage}
+                rowsPerPageOptions = {[10, 25, 50]}
+              />
+              )
             }
-        }
-        sx={{background:"lightgray"}}
-        pageSizeOptions={[5]}
-        getRowClassName={(params) =>
-            params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
           }
-            
+          columns={columns}
+          rows={journeys}  
+          sx={{background:"lightgray"}}
+          getRowClassName={(params) =>
+            params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
+          }         
         />
+       
 </Box>
   );
 }
