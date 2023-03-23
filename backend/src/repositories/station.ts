@@ -3,9 +3,15 @@ import { Station } from "../models";
 
 
 
-export const getStations = async (): Promise<Array<Station>> => {
-    const stationRepository = AppDataSource.getRepository(Station);
-    return stationRepository.find();
+export const getStations = async (page: number, limit:number): Promise<Array<Station>> => {
+    const skip = (page - 1) * limit;
+
+    return await AppDataSource.createQueryBuilder()
+    .select("station")
+    .from(Station, "station")
+    .skip(skip)
+    .take(limit)
+    .getMany()
 };
 
 export const getStation = async (stationId: number): Promise<Station | null> => {

@@ -11,7 +11,7 @@ export class Station{
         finnishname!: string;
 
     @Column()
-        swedishName!: string;
+        swedishname!: string;
 
     @Column()
         englishname!: string;

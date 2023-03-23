@@ -3,9 +3,9 @@ import StationController from "../controllers/station.controller";
 
 const router = express.Router();
 
-router.get("/", async(_req: any, res: any) => {
+router.get("/paging/:page", async(req: any, res: any) => {
     const controller = new StationController();
-    const response = await controller.getStations();
+    const response = await controller.getStations(req.params.page);
     return res.send(response);
 }); 
 
