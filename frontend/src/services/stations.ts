@@ -1,8 +1,8 @@
 import axios from "axios";
 const baseUrl = "http://localhost:8000/stations"
 
-const getAll = () => {
-    const request = axios.get(baseUrl);
+const getAll = (page:any) => {
+    const request = axios.get(`${baseUrl}/paging/${page}`);
     return request.then(response => response.data)
 }
 

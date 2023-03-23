@@ -1,10 +1,12 @@
-import * as React from "react";
+import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, gridClasses, GridEventListener, useGridApiEventHandler, useGridApiContext, GridFooter, GridCellParams, GridRenderCellParams  } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import { alpha, styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import { redirect, useNavigate } from "react-router-dom";
+import StationService from '../services/stations';
+import TablePagination from '@mui/material/TablePagination';
 
 
 const ODD_OPACITY = 0.2;
@@ -57,13 +59,35 @@ const ODD_OPACITY = 0.2;
 
 
 
-function StationsTable({data}:any) {
+function StationsTable() {
     const navigate = useNavigate()
 
+    const [stations, setStations] = useState([])
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(50);
+    
+    useEffect(() => {
+        StationService
+        .getAll(page.toString())
+        .then( stations => {
+            setStations(stations)
+            console.log(stations)
+        }
+        )
+    },  [page, pageSize])
+
+    function handlePageChange(event:any, value:any) {
+      setPage(value);
+    }
+    function handleChangeRowsPerPage(event:any) {
+      setPageSize(parseInt(event.target.value, 50));
+      setPage(0);
+    }
+
     const columns: GridColDef[] = [
-        { field: 'stationId', headerName: 'ID', width: 90 },
+        { field: 'stationid', headerName: 'ID', width: 90 },
         {
-          field: 'finnishName',
+          field: 'finnishname',
           headerName: 'Station Name',
           width: 170,
           editable: true,
@@ -89,20 +113,26 @@ function StationsTable({data}:any) {
   return (
     <Box sx={{ height: '90%', width: '100%' , padding: "5%"}}>
         <StripedDataGrid
-            rows={data}
-            getRowId={(row) => row.stationId}
-            columns={columns}
-            initialState={{
-                pagination: {
-                paginationModel: {
-                    pageSize: 5,
-                },
-                },
+            components={
+              {
+                Pagination: () => (
+                  <TablePagination
+                  component="div"
+                  count = {-1}
+                  page = {page}
+                  onPageChange = {handlePageChange}  
+                  rowsPerPage = {pageSize}
+                  onRowsPerPageChange = {handleChangeRowsPerPage}
+                  rowsPerPageOptions = {[10, 25, 50]}
+                />
+                )
+              }
             }
-        }
-        sx={{background:"lightgray"}}
-        pageSizeOptions={[5]}
-        getRowClassName={(params) =>
+            rows={stations}
+            getRowId={(row) => row.stationid}
+            columns={columns}
+            sx={{background:"lightgray"}}
+            getRowClassName={(params) =>
             params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
           }
         disableRowSelectionOnClick
