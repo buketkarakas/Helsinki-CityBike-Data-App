@@ -3,11 +3,11 @@ import { Journey, Station } from "../models";
 
 const config: DataSourceOptions = {
     type: "postgres",
-    host: process.env.POSTGRES_HOST || "localhost",
-    port: Number(process.env.POSTGRES_USER) || 5432,
-    username: process.env.POSTGRES_USER || "postgres",
-    password: process.env.POSTGRES_PASSWORD || "postgres",
-    database: process.env.POSTGRES_DB || "solitaacademy",
+    host: process.env.POSTGRES_HOST,
+    port: Number(process.env.POSTGRES_USER),
+    username: process.env.POSTGRES_USER ,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
     entities: [Journey, Station],
     synchronize: false,
 };

@@ -21,7 +21,7 @@ export default function HeroBanner() {
                 alt="increase priority"
             />
             <Typography color="inherit" align="center" variant="h2" marked="center">
-       Pedal Through Helsinki with Bike Data
+                Pedal Through Helsinki with Bike Data
             </Typography>
             <Typography
                 color="inherit"
@@ -29,7 +29,7 @@ export default function HeroBanner() {
                 variant="h5"
                 sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
             >
-       Explore Helsinki on two wheels: Get the latest City Bike data now!
+                Explore Helsinki on two wheels: Get the latest City Bike data now!
             </Typography>     
         </HeroBannerLayout>
     );
