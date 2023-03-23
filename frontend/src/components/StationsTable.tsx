@@ -63,8 +63,8 @@ function StationsTable() {
     const navigate = useNavigate()
 
     const [stations, setStations] = useState([])
-    const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(50);
+    const [page, setPage] = useState(0);
+    const pageSize = 50;
     
     useEffect(() => {
         StationService
@@ -79,10 +79,7 @@ function StationsTable() {
     function handlePageChange(event:any, value:any) {
       setPage(value);
     }
-    function handleChangeRowsPerPage(event:any) {
-      setPageSize(parseInt(event.target.value, 50));
-      setPage(0);
-    }
+
 
     const columns: GridColDef[] = [
         { field: 'stationid', headerName: 'ID', width: 90 },
@@ -122,8 +119,7 @@ function StationsTable() {
                   page = {page}
                   onPageChange = {handlePageChange}  
                   rowsPerPage = {pageSize}
-                  onRowsPerPageChange = {handleChangeRowsPerPage}
-                  rowsPerPageOptions = {[10, 25, 50]}
+                  rowsPerPageOptions = {[-1]}
                 />
                 )
               }

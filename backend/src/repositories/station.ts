@@ -4,7 +4,7 @@ import { Station } from "../models";
 
 
 export const getStations = async (page: number, limit:number): Promise<Array<Station>> => {
-    const skip = (page - 1) * limit;
+    const skip = (page) * limit;
 
     return await AppDataSource.createQueryBuilder()
     .select("station")

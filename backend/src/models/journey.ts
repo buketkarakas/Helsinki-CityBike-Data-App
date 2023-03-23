@@ -29,10 +29,10 @@ export class Journey {
     @Column()
         returnstationname!: string;
 
-    @Column()
+    @Column({type: "decimal", precision: 5, scale: 2, default:0})
         covereddistance!: number;
 
-    @Column()
+    @Column({type: "decimal", precision: 5, scale: 2, default:0})
         duration!: number;
 
 }

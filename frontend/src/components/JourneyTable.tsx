@@ -99,16 +99,14 @@ const columns: GridColDef[] = [
 
 function JourneyTable() {
   const [journeys, setJourneys] = useState([]);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(50);
-  const [rowCount, setRowCount] = useState(0);
+  const [page, setPage] = useState(0);
+ const pageSize = 50;
 
   const fetchData = async () => {
     journeyService
       .getAll(page.toString())
       .then( journeys => {
           setJourneys(journeys)
-          setRowCount(journeys.count);
       })
   }
   useEffect(() => {
@@ -118,10 +116,7 @@ function JourneyTable() {
   function handlePageChange(event:any, value:any) {
     setPage(value);
   }
-  function handleChangeRowsPerPage(event:any) {
-    setPageSize(parseInt(event.target.value, 50));
-    setPage(0);
-  }
+
 
   return (
     <Box sx={{ height: '90%', width: '100%' , padding: "5%"}}>
@@ -135,8 +130,7 @@ function JourneyTable() {
                 page = {page}
                 onPageChange = {handlePageChange}  
                 rowsPerPage = {pageSize}
-                onRowsPerPageChange = {handleChangeRowsPerPage}
-                rowsPerPageOptions = {[10, 25, 50]}
+                rowsPerPageOptions={[-1]}
               />
               )
             }

@@ -17,14 +17,14 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 interface IStation {
-    stationId: Number,
-    finnishName: string,
-    swedishName: string,
-    englishName: string,
-    finnishAddress: string,
-    swedishAddress: string,
-    finnishCity: string,
-    swedishCity: string,
+    stationid: Number,
+    finnishname: string,
+    swedishname: string,
+    englishname: string,
+    finnishaddress: string,
+    swedishaddress: string,
+    finnishcity: string,
+    swedishcity: string,
     operator: string,
     capacity: string,
     xCoord: string,
@@ -54,15 +54,15 @@ export default function Station() {
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography variant="h5" component="div">
-        {station ? station.finnishName : "Loading"}
+        {station ? station.finnishname : "Loading"}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {station?.swedishName}
+          {station?.swedishname}
         </Typography>
         <Typography variant="body2">
-          {station?.finnishAddress} ({station?.swedishAddress})
+          {station?.finnishaddress} ({station?.swedishaddress})
           <br />
-          {station?.finnishCity} ({station?.swedishCity})
+          {station?.finnishcity} ({station?.swedishcity})
           <br />
           <b>Capacity: </b> {station?.capacity}
         </Typography>
