@@ -85,8 +85,7 @@ function StationsTable() {
         {
             field: "finnishname",
             headerName: "Station Name",
-            width: 170,
-            editable: true,
+            width: 170
         },
         {
             field: "Details",

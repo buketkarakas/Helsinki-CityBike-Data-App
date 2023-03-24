@@ -13,54 +13,46 @@ const columns: GridColDef[] = [
     {
         field: "departuretime",
         headerName: "Departure Time",
-        width: 170,
-        editable: true,
+        width: 170
     },
     {
         field: "returntime",
         headerName: "Return Time",
-        width: 170,
-        editable: true,
+        width: 170
     },
     {
         field: "departurestationid",
         headerName: "Departure Station Id",
         type: "number",
-        width: 140,
-        editable: true,
+        width: 140
     },
     {
         field: "departurestationname",
         headerName: "Departure Station Name",
-        width: 180,
-        editable: true,
+        width: 180
     },
     {
         field: "returnstationid",
         headerName: "Return Station Id",
         type: "number",
-        width: 120,
-        editable: true,
+        width: 120
     },
     {
         field: "returnstationname",
         headerName: "Return Station Name",
-        width: 180,
-        editable: true,
+        width: 180
     },
     {
         field: "covereddistance",
         headerName: "Covered Distance (km)",
         type: "number",
-        width: 160,
-        editable: true,
+        width: 160
     },
     {
         field: "duration",
         headerName: "Duration (min)",
         type: "number",
-        width: 110,
-        editable: true,
+        width: 110
     },
 ];
 
