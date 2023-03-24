@@ -14,7 +14,7 @@ const getOne = (id:any) => {
 const getJourneyStats = (id:any) => {
     const request = axios.get(`${baseUrl}/${id}/journeys`);
     return request.then(response => response.data);
-}
+};
 
 
 export default {getAll, getOne, getJourneyStats};

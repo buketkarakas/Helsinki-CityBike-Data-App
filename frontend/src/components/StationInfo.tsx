@@ -25,8 +25,8 @@ const StationInfo = (props:any) => {
             <br />
             <b>Average distance: </b> {Number(journeyStats?.averageDistance).toPrecision(3)} km
         </Typography>
-    </>
-}
+    </>;
+};
 
 export default StationInfo;
 
