@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 
 import StationService from "../services/stations";
 import TopStationsList from "./TopStationsList";
+import StationInfo from "./StationInfo";
 
 interface IStation {
     stationid: number,
@@ -62,26 +62,7 @@ export default function Station() {
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={4}>
-                                <Typography variant="h5" component="div">
-                                    {station ? station.finnishname : "Loading"}
-                                </Typography>
-                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    {station?.swedishname}
-                                </Typography>
-                                <Typography variant="body2">
-                                    {station?.finnishaddress} ({station?.swedishaddress})
-                                    <br />
-                                    {station?.finnishcity} ({station?.swedishcity})
-                                    <br />
-                                    <br />
-                                    <b>Capacity: </b> {station?.capacity}
-                                    <br />
-                                    <b>Starting Journeys:</b> {journeyStats?.startingJourneysCount}
-                                    <br />
-                                    <b>Ending Journeys:</b> {journeyStats?.endingJourneysCount}
-                                    <br />
-                                    <b>Average distance: </b> {Number(journeyStats?.averageDistance).toPrecision(3)} km
-                                </Typography>
+                               <StationInfo station={station} journeyStats={journeyStats}  />
                             </Grid>
                             <Grid item xs={4}>
                                 <TopStationsList title="Top Departure Stations" stations = {journeyStats?.topDepartureStations || []}/>
