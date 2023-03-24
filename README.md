@@ -24,8 +24,8 @@
 
 ### Single Station View
 
-- [ ] Show: station name, station address, total number of journeys starting from the station, total number of journeys ending at the station
+- [x] Show: station name, station address, total number of journeys starting from the station, total number of journeys ending at the station
 - [ ] Station location on map (extra)
-- [ ] Avg distance starting from and  ending at the station (extra)
+- [x] Avg distance starting from and  ending at the station (extra)
 - [ ] Top 5 most popular stations for journeys starting from and ending at the station (extra)
 - [ ] Ability to filter all the calc. per month (extra)

@@ -26,19 +26,26 @@ export const getStation = async (stationId: number): Promise<Station | null> => 
 };
 
 export const getStationJourneyStats = async (stationId: number): Promise<any | null> => {
-    const stationRepository = AppDataSource.getRepository(Journey);
-    const startingJourneysCount = await stationRepository.createQueryBuilder('journey')
+    const journeyRepository = AppDataSource.getRepository(Journey);
+    const startingJourneysCount = await journeyRepository.createQueryBuilder('journey')
                                         .where('departurestationid = :id', {id: stationId})
                                         .getCount();
     
-    const endingJourneysCount = await stationRepository.createQueryBuilder('journey')
+    const endingJourneysCount = await journeyRepository.createQueryBuilder('journey')
                                         .where('returnstationid = :id', {id: stationId})
                                         .getCount();
     
+    const averageDistance = await journeyRepository.createQueryBuilder('journey')
+                                    .select('AVG(covereddistance)')
+                                    .where('departurestationid = :id AND returnstationid = :id', {id: stationId})
+                                    .getRawOne()
+    
     const result = {
         startingJourneysCount: startingJourneysCount,
-        endingJourneysCount: endingJourneysCount
+        endingJourneysCount: endingJourneysCount,
+        averageDistance: averageDistance.avg
     }
 
     return result;
 }
+

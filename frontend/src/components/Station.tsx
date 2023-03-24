@@ -22,9 +22,17 @@ interface IStation {
 
 }
 
+interface IJourneyStats {
+    startingJourneysCount: number,
+    endingJourneysCount: number,
+    averageDistance: number
+
+}
+
 export default function Station() {
    
     const [station, setStation] = useState<IStation>();
+    const [journeyStats, setJourneyCounts] = useState<IJourneyStats>();
 
     const {id}:any = useParams();
     
@@ -36,6 +44,11 @@ export default function Station() {
                 console.log(station);
             }
             );
+        StationService
+            .getJourneyStats(id)
+            .then(journeyCounts => {
+                setJourneyCounts(journeyCounts)
+            })
     }, []);
 
     return (
@@ -53,7 +66,14 @@ export default function Station() {
                         <br />
                         {station?.finnishcity} ({station?.swedishcity})
                         <br />
+                        <br />
                         <b>Capacity: </b> {station?.capacity}
+                        <br />
+                        <b>Starting Journeys:</b> {journeyStats?.startingJourneysCount}
+                        <br />
+                        <b>Ending Journeys:</b> {journeyStats?.endingJourneysCount}
+                        <br />
+                        <b>Average distance: </b> {Number(journeyStats?.averageDistance).toPrecision(3)} km
                     </Typography>
                 </CardContent>
             </Card>

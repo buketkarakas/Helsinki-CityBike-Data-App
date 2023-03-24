@@ -8,8 +8,13 @@ const getAll = (page:any) => {
 
 const getOne = (id:any) => {
     const request = axios.get(`${baseUrl}/${id}`);
-    console.log("ID: "+id);
     return request.then(response => response.data);
 };
 
-export default {getAll, getOne};
+const getJourneyStats = (id:any) => {
+    const request = axios.get(`${baseUrl}/${id}/journeys`);
+    return request.then(response => response.data);
+}
+
+
+export default {getAll, getOne, getJourneyStats};
