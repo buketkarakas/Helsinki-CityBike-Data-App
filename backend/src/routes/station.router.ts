@@ -16,4 +16,11 @@ router.get("/:stationId", async(req: any, res: any) => {
     return res.send(response);
 }); 
 
+router.get("/:stationId/journeys", async(req: any, res: any) => {
+    const controller = new StationController();
+    const response = await controller.getStationJourneyStats(req.params.stationId);
+    if(!response) res.status(404).send({ message: "No journey stats found" });
+    return res.send(response);
+})
+
 export default router;

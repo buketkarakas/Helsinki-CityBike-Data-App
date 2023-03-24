@@ -1,5 +1,5 @@
 import { AppDataSource } from "..";
-import { Station } from "../models";
+import { Journey, Station } from "../models";
 
 
 
@@ -24,3 +24,21 @@ export const getStation = async (stationId: number): Promise<Station | null> => 
     if (!Station) return null;
     return station;
 };
+
+export const getStationJourneyStats = async (stationId: number): Promise<any | null> => {
+    const stationRepository = AppDataSource.getRepository(Journey);
+    const startingJourneysCount = await stationRepository.createQueryBuilder('journey')
+                                        .where('departurestationid = :id', {id: stationId})
+                                        .getCount();
+    
+    const endingJourneysCount = await stationRepository.createQueryBuilder('journey')
+                                        .where('returnstationid = :id', {id: stationId})
+                                        .getCount();
+    
+    const result = {
+        startingJourneysCount: startingJourneysCount,
+        endingJourneysCount: endingJourneysCount
+    }
+
+    return result;
+}

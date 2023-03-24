@@ -4,22 +4,22 @@
 
 ### Data Import
 
-- [ ] Import data from the CSV files to local Postgres database
-- [ ] Validate data before importing
-- [ ] Don't import journeys that lasted for less than 10 sec.
-- [ ] Don't import journeys that covered distance shorter than 10 meters
+- [x] Import data from the CSV files to local Postgres database
+- [x] Validate data before importing
+- [x] Don't import journeys that lasted for less than 10 sec.
+- [x] Don't import journeys that covered distance shorter than 10 meters
 
 ### Journey List View
 
-- [ ] List journeys with pagination
-- [ ] For each journey show: departure and return stations, covered distance in kilometers and duration in minutes
+- [x] List journeys with pagination
+- [x] For each journey show: departure and return stations, covered distance in kilometers and duration in minutes
 - [ ] Ordering per column (extra)
 - [ ] Searching (extra)
 - [ ] Filtering (extra)
 
 ### Station List 
 
-- [ ] List all the stations with pagination
+- [x] List all the stations with pagination
 - [ ] Searching (extra)
 
 ### Single Station View
