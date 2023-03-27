@@ -1,6 +1,6 @@
 import { Get, Path, Route, Tags } from "tsoa";
 import { Journey } from "../models";
-import { getJourneys } from "../repositories/journey";
+import { getJourneys } from "../repositories/journey.repository";
 
 const PAGE_SIZE = 50;
 

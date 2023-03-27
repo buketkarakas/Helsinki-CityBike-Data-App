@@ -1,6 +1,6 @@
 import { Get, Path, Route, Tags } from "tsoa";
 import { Station } from "../models";
-import { getStations, getStation, getStationJourneyStats } from "../repositories/station";
+import { getStations, getStation, getStationJourneyStats } from "../repositories/station.repository";
 
 const PAGE_SIZE = 50;
 
