@@ -1,5 +1,10 @@
 import JourneyController from "./journey.controller";
 import * as JourneyRepository from "../repositories/journey.repository"
+import { generateJourneysData } from "../../test/utils/generate";
+
+afterEach(() => {
+    jest.resetAllMocks();
+});
 
 describe("JourneyController", () => {
     describe("getJourneys", () => {
@@ -17,19 +22,7 @@ describe("JourneyController", () => {
         })
 
         test("should return journey list", async () => {
-            const journeyList = [
-                {
-                    id: 1,
-                    departuretime: new Date(),
-                    returntime: new Date(),
-                    departurestationid: 1,
-                    returnstationid: 2,
-                    departurestationname: "test1",
-                    returnstationname: "test2",
-                    covereddistance: 10,
-                    duration: 5
-                }
-            ];
+            const journeyList = generateJourneysData(2);
             const spy = jest
                 .spyOn(JourneyRepository, "getJourneys")
                 .mockResolvedValueOnce(journeyList);
