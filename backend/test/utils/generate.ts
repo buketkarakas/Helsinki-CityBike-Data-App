@@ -25,3 +25,31 @@ export function generateJourneysData(n: number = 1, overide = {}){
         }
     );
 }
+
+export function generateStationData(overide = {}) {
+    return {
+        "stationid": faker.datatype.number(),
+        "finnishname": faker.word.noun(),
+        "swedishname": faker.word.noun(),
+        "englishname": faker.word.noun(),
+        "finnishaddress": faker.word.noun(),
+        "swedishaddress": faker.word.noun(),
+        "finnishcity": faker.address.cityName(),
+        "swedishcity": faker.address.cityName(),
+        "operator": faker.word.noun(),
+        "capacity": faker.random.numeric(),
+        "xcoord": faker.datatype.float(),
+        "ycoord": faker.datatype.float()
+      }
+}
+
+export function generateStationsData(n: number = 1, overide = {}){
+    return Array.from(
+        {
+            length: n,
+        },
+        (_, i) => {
+            return generateStationData({id: i, ...overide})
+        }
+    )
+}

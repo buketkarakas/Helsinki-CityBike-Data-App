@@ -2,6 +2,7 @@ import JourneyController from "./journey.controller";
 import * as JourneyRepository from "../repositories/journey.repository"
 import { generateJourneysData } from "../../test/utils/generate";
 
+
 afterEach(() => {
     jest.resetAllMocks();
 });
