@@ -53,3 +53,66 @@ export function generateStationsData(n: number = 1, overide = {}){
         }
     )
 }
+
+export function generateStationJourneyStatData(overide = {}){
+    return {
+        "startingJourneysCount": faker.datatype.number(),
+        "endingJourneysCount": faker.datatype.number(),
+        "averageDistance": faker.datatype.float(),
+        "topDepartureStations": [
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+        ],
+        "topReturnStations": [
+         {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+          {
+            "count": faker.datatype.number(),
+            "finnishname": faker.word.noun(),
+            "departurestationid": faker.datatype.number()
+          },
+        ],
+        ...overide 
+      }
+}

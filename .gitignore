@@ -1,6 +1,7 @@
 backend/node_modules/
 backend/build/
 /node_modules/
+backend/coverage
 
 # dependencies
 frontend/node_modules

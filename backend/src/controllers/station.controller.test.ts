@@ -1,6 +1,6 @@
 import StationController from "./station.controller";
 import * as StationRepository from "../repositories/station.repository"
-import { generateStationsData, generateStationData } from "../../test/utils/generate";
+import { generateStationsData, generateStationData, generateStationJourneyStatData } from "../../test/utils/generate";
 
 
 
@@ -40,17 +40,31 @@ describe("StationController", () => {
 
     describe("getStation", () =>{
         test("should return station from the database", async () => {
-        const id = 1;
-        const stationData = generateStationData({ id });
-        const spy = jest
-            .spyOn(StationRepository, "getStation")
-            .mockResolvedValueOnce(null);
+            const id = 1;
+            const stationData = generateStationData({ id });
+            const spy = jest
+                .spyOn(StationRepository, "getStation")
+                .mockResolvedValueOnce(stationData);
         
             const controller  = new StationController();
             const station = await controller.getStation(id.toString());
-            expect(station).toBeNull();
+            expect(station).toEqual(stationData);
             expect(spy).toHaveBeenCalledWith(id);
             expect(spy).toHaveBeenCalledTimes(1);
-    })
+        })
+
+        test("should return station stats from the database", async () => {
+            const stationStatsData = generateStationJourneyStatData();
+            const spy = jest
+                .spyOn(StationRepository, "getStationJourneyStats")
+                .mockResolvedValueOnce(stationStatsData);
+            
+            const controller = new StationController();
+            const stationStats = await controller.getStationJourneyStats("1");
+            expect(stationStats).toEqual(stationStatsData);
+            expect(spy).toHaveBeenCalledWith(1);
+            expect(spy).toHaveBeenCalledTimes(1);
+
+        })
     })
 })
