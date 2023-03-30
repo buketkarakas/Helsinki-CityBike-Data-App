@@ -10,6 +10,6 @@ export default class JourneyController{
     @Get("/{page}")
     public async getJourneys(@Path() page: string): Promise<Array<Journey>> {
 
-        return getJourneys(parseInt(page), PAGE_SIZE)
+        return getJourneys(parseInt(page), PAGE_SIZE);
     }
 }

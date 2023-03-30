@@ -15,7 +15,7 @@ export class Journey {
 
     @Column()
         departurestationid!: number;
-   // @ManyToOne((_type) => Station, (station: Station) => station.stationid)
+    // @ManyToOne((_type) => Station, (station: Station) => station.stationid)
 
 
     @Column()

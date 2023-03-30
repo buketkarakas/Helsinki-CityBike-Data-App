@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 export function generateJourneyData(overide = {}) {
     return {
@@ -15,7 +15,7 @@ export function generateJourneyData(overide = {}) {
     };
 }
 
-export function generateJourneysData(n: number = 1, overide = {}){
+export function generateJourneysData(n = 1, overide = {}){
     return Array.from(
         {
             length: n,
@@ -40,18 +40,18 @@ export function generateStationData(overide = {}) {
         "capacity": faker.random.numeric(),
         "xcoord": faker.datatype.float(),
         "ycoord": faker.datatype.float()
-      }
+    };
 }
 
-export function generateStationsData(n: number = 1, overide = {}){
+export function generateStationsData(n = 1, overide = {}){
     return Array.from(
         {
             length: n,
         },
         (_, i) => {
-            return generateStationData({id: i, ...overide})
+            return generateStationData({id: i, ...overide});
         }
-    )
+    );
 }
 
 export function generateStationJourneyStatData(overide = {}){
@@ -60,59 +60,59 @@ export function generateStationJourneyStatData(overide = {}){
         "endingJourneysCount": faker.datatype.number(),
         "averageDistance": faker.datatype.float(),
         "topDepartureStations": [
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
         ],
         "topReturnStations": [
-         {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
-          {
-            "count": faker.datatype.number(),
-            "finnishname": faker.word.noun(),
-            "departurestationid": faker.datatype.number()
-          },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
+            {
+                "count": faker.datatype.number(),
+                "finnishname": faker.word.noun(),
+                "departurestationid": faker.datatype.number()
+            },
         ],
         ...overide 
-      }
+    };
 }

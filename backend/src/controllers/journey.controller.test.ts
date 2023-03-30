@@ -1,5 +1,5 @@
 import JourneyController from "./journey.controller";
-import * as JourneyRepository from "../repositories/journey.repository"
+import * as JourneyRepository from "../repositories/journey.repository";
 import { generateJourneysData } from "../../test/utils/generate";
 
 
@@ -20,7 +20,7 @@ describe("JourneyController", () => {
             expect(spy).toHaveBeenCalledWith(1, 50);
             expect(spy).toHaveBeenCalledTimes(1);
             spy.mockRestore();
-        })
+        });
 
         test("should return journey list", async () => {
             const journeyList = generateJourneysData(2);
@@ -34,6 +34,6 @@ describe("JourneyController", () => {
             expect(spy).toHaveBeenCalledWith(1, 50);
             expect(spy).toHaveBeenCalledTimes(1);
             spy.mockRestore();
-        })
-    })
-})
+        });
+    });
+});

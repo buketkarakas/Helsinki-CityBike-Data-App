@@ -1,5 +1,5 @@
 import StationController from "./station.controller";
-import * as StationRepository from "../repositories/station.repository"
+import * as StationRepository from "../repositories/station.repository";
 import { generateStationsData, generateStationData, generateStationJourneyStatData } from "../../test/utils/generate";
 
 
@@ -24,19 +24,19 @@ describe("StationController", () => {
         });
 
         test("should return station list", async () => {
-            const stationList = generateStationsData(2)
+            const stationList = generateStationsData(2);
             const spy = jest
                 .spyOn(StationRepository, "getStations")
                 .mockResolvedValueOnce(stationList);
             
-                const controller = new StationController();
-                const stations = await controller.getStations("1");
-                expect(stations).toEqual(stationList);
-                expect(spy).toHaveBeenCalledWith(1,50);
-                expect(spy).toHaveBeenCalledTimes(1);
-                spy.mockRestore();
-        })
-    })
+            const controller = new StationController();
+            const stations = await controller.getStations("1");
+            expect(stations).toEqual(stationList);
+            expect(spy).toHaveBeenCalledWith(1,50);
+            expect(spy).toHaveBeenCalledTimes(1);
+            spy.mockRestore();
+        });
+    });
 
     describe("getStation", () =>{
         test("should return station from the database", async () => {
@@ -51,7 +51,7 @@ describe("StationController", () => {
             expect(station).toEqual(stationData);
             expect(spy).toHaveBeenCalledWith(id);
             expect(spy).toHaveBeenCalledTimes(1);
-        })
+        });
 
         test("should return station stats from the database", async () => {
             const stationStatsData = generateStationJourneyStatData();
@@ -65,6 +65,6 @@ describe("StationController", () => {
             expect(spy).toHaveBeenCalledWith(1);
             expect(spy).toHaveBeenCalledTimes(1);
 
-        })
-    })
-})
+        });
+    });
+});
