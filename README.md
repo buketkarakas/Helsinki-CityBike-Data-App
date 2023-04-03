@@ -59,6 +59,22 @@ python3 importData.py
 
 This might take some time so let's wait until the ingestion is done :) 
 
+***Warning***
+⚠️ If you're already running local postgres on port 5432 you need to change the docker port forward for it. You can do it by going to the docker-compose.yml file under the backend directory and change "port" field to the "5433:5432". You can put any empty port instead of 5433. This will change the docker postgresql port. After that you also need to change the /backend/docker/db-ingest/importData.py. You need to change the connection object to the following:
+
+```
+...
+conn = psycopg2.connect(
+    host="localhost",
+    database="solitaacademy",
+    user="postgres",
+    password="postgres",
+    port=5433
+)
+...
+
+```
+
 5. Let's change directory into /frontend/ and create our frontend container:
 
 ```
