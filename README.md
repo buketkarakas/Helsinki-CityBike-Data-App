@@ -45,7 +45,7 @@ docker-compose up -d
 
 This will run the backend application and database in the background
 
-3. Change the directory into /backend/db-ingestion and install dependencies
+3. Change the directory into /backend/docker/db-ingestion and install dependencies
 
 ```
 pip3 install -r requirements.txt
